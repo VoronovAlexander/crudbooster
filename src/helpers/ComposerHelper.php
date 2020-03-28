@@ -30,7 +30,7 @@ class ComposerHelper
     public static function dumpAutoLoad()
     {
         $composer = self::findComposer();
-        $process = new Process($composer.' dump-autoload');
+        $process = new Process([$composer.' dump-autoload']);
         $process->setTimeout(0);
         $process->setWorkingDirectory(base_path())->run();
     }
@@ -40,7 +40,7 @@ class ComposerHelper
 
         // Composer require
         Log::debug($composer.' remove '.$package);
-        $process = new Process($composer.' remove '.$package);
+        $process = new Process([$composer.' remove '.$package]);
         $process->setTimeout(0);
         $process->setWorkingDirectory(base_path())->run();
     }
@@ -50,7 +50,7 @@ class ComposerHelper
         $php = self::findPHP();
 
         // Composer require
-        $process = new Process($composer.' require '.$package);
+        $process = new Process([$composer.' require '.$package]);
         $process->setTimeout(0);
         $process->setInput("Y");
         $process->setWorkingDirectory(base_path())->run();
